@@ -1,8 +1,9 @@
 import TextField from '@mui/material/textField';
+import axios from 'axios';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { blue, orange } from '@mui/material/colors';
 import '../styles/LoginForm.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Button } from '@mui/material';
 
 
@@ -20,6 +21,8 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [userError, setUserError] = useState(false);
     const [passError, setPassError] = useState(false);
+    const users = {};
+    const [validUser, setValidUser] = useState(false);
 
 
     const handleSubmit = (e) => {
@@ -36,7 +39,24 @@ const LoginForm = () => {
         setPassError(true)
       }
       if(username && password){
-        console.log(username,password)
+        console.log(username,password);
+
+        users.username = username;
+        users.password = password;
+
+        axios.post("http://localhost:8000/users", users)
+        .then((res) => {
+
+            console.log(res.data);
+            if(res.data.length !== 0){
+                setValidUser(true);
+            }
+            // setFilterPlans(res.data)
+            // console.log('filteredPlans:', res.data)
+
+        })
+        .catch(err => console.log(err))
+
         setUsername('');
         setPassword('');
       }}; 
@@ -94,6 +114,8 @@ const LoginForm = () => {
                             Login
                         </Button>
                 </form>
+                {validUser && <p>this user is valid</p>}
+                {!validUser && <p>this user is Invalid</p>}
                 </CardContent>
                 </Card>
                 </div>

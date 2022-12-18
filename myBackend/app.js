@@ -1,18 +1,9 @@
 const express = require('express');
 const {ObjectId} = require('mongodb');
 const { connectToDb, getDb } = require('./db');
-// const bodyParser = require('body-parser');
-// var cors = require('cors');
-
-// const Quote = require('inspirational-quotes');
-// console.log(Quote.getQuote());
-// const test = require('./test.json');
-
 const app = express();
 // app.use(cors());
 app.use(express.json());
-// app.use(bodyParser);
-
 
 
 //db connection
@@ -27,7 +18,6 @@ connectToDb((err) => {
     }
 })
 
-// const test = {name:'Farhad', surname:'Fallahshabani'};
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -41,18 +31,14 @@ app.use(function(req, res, next) {
 
 
 
-//to get all the documents
+//to get the filtered documents in plans collection
 app.get('/packages', (req,res) => {
 
-    const page = req.query.ak || 0;
-    const pkgsPerPage = 3;
 
     let packagePlans = []
 
         db.collection('packages')
         .find()
-        .skip(page * pkgsPerPage)
-        .limit(pkgsPerPage)
         .forEach(packagePlan => packagePlans.push(packagePlan))
         .then(() => {
             res.status(200).json(packagePlans) //sends the res to client
@@ -63,18 +49,11 @@ app.get('/packages', (req,res) => {
 
     }); 
 
-    //to post a document
+    //to post the plans filter inputs from client
     app.post('/packages', (req,res) => {
         const pkg = req.body
-        // console.log("pkg:",pkg, typeof(pkg))
         console.log(pkg)
-        
-        // console.log(pkg, typeof(pkg))
-
-        // for(let i = 0; i<pkg.length; i++){
-        //     const ai = pkg[i]
-        // }
-
+    
 
         let packagePlans = [];
 
@@ -90,72 +69,42 @@ app.get('/packages', (req,res) => {
             .catch(()  => {
                 res.status(500).json({error: 'Could not fetch the documents '})
             })  
-        
-
-        // db.collection('packages')
-        //     .insertOne(pkg) 
-        //     .then(result => {
-        //         res.status(201).json(result)
-        //         response.json({ message: 'Request received!', data })
-        //     })
-        //     .catch(err => {
-        //         res.status(500).json({err: 'Not a valid doc id'})
-        //     })
     })
 
- 
-    // app.get('/packages', (req,res) => {
-       
-    //     let packagePlans = [];
 
-    //         db.collection('packages')
-    //         .find()
-    //         .forEach(packagePlan => packagePlans.push(packagePlan))
-    //         .then(() => {
-    //             res.status(200).json(packagePlans)
-                
-                
-    //         })
-    //         .catch(()  => {
-    //             res.status(500).json({error: 'Could not fetch the documents '})
-    //         })  
+//to check if the user exists in the users collection
+    app.get('/users', (req,res) => {
     
-    // }); 
+        let us = []
+    
+            db.collection('users')
+            .find()
+            .forEach(use => us.push(use))
+            .then(() => {
+                res.status(200).json(us) //sends the res to client
+            })
+            .catch(()  => {
+                res.status(500).json({error: 'Could not fetch the documents '})
+            })  
+    
+        }); 
 
+//to post the username & password from the login page
+    app.post('/users', (req,res) => {
+        const user = req.body    
 
+        let loginReq = [];
 
-
-
-
-       
-
-
-
-
-
-
-// app.get("/", (req, res) => {
-//     // res.sendFile('./test.txt', {root: __dirname});
-//     // console.log(res);
-
-//     res.header("Content-Type",'application/json');
-//     res.send(JSON.stringify(test));
-
-//   });
-
-// let port = process.env.PORT;
-// if(port == null || port == "") {
-//  port = 8000;
-// }
-
-// app.listen(8000, () => console.log('it is ready'));
-
-
-
-
-// const data = require('/path/to/data.json')
-
-// app.get('/search', function (req, res) {
-//   res.header("Content-Type",'application/json');
-//   res.send(JSON.stringify(data));
-// })
+            db.collection('users')
+            .find(user)
+            .forEach(userReq => loginReq.push(userReq))
+            .then(() => {
+                res.status(200).json(loginReq)
+                console.log(loginReq)
+                
+            })
+            .catch(()  => {
+                res.status(500).json({error: 'Could not fetch the documents '})
+            })  
+        
+    })
