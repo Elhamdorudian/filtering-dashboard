@@ -1,0 +1,37 @@
+[
+    {
+        "offerID":"700110",
+        "category":"monthly",
+        "sub-category": "alpha+",
+        "duration": "30",
+        "qouta":"15",
+        "optin": "No",
+        "payment-method":"balance",
+        "type":"postpaid",  
+        "date": "03-05-2021",
+        "price": "10000",
+        "service":"data",
+        "name":{
+          "english": "15GB 30days alpha+",
+          "persian": "بسته ۱۵ گیگابایت ۳۰ روزه آلفاپلاس"   
+      }
+    },
+    {
+        "offerID":"700130",
+        "category":"monthly",
+        "sub-category": "alpha+",
+        "duration": "30",
+        "qouta":"5",
+        "optin": "yes",
+        "payment-method":"balance",
+        "type":"postpaid",  
+        "date": "05-04-2021",
+        "price": "15000",
+        "service":"data",
+        "name":{
+          "english": "5GB 30days alpha+",
+          "persian": "بسته ۵ گیگابایت ۳۰ روزه آلفاپلاس"   
+      }
+    }
+
+]

@@ -1,0 +1,17 @@
+.login-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 900px;
+}
+
+.login-form{
+    padding: 3rem;
+}
+
+.login-field{
+    margin-bottom: 20px !important;
+    width:100% !important;
+}
