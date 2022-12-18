@@ -4,14 +4,12 @@ import Navbar from './layout/Navbar';
 import LoginForm from './components/LoginForm';
 import Layout from './layout/Layout';
 import OfferFilter from './components/OfferFilter';
-import Quotes from './components/Quotes';
 
 
 function App() {
   return (
     <Router>
       <Navbar/>      
-      <Quotes/>
     <Layout>
         <Routes>
           <Route exact path="/" element={<LoginForm/>} />

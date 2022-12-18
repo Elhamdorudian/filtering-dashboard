@@ -2,7 +2,7 @@ import axios from 'axios';
 import TextField from '@mui/material/textField';
 import '../styles/OfferFilter.css';
 import '../styles/LoginForm.css';
-import Table from './Table';
+import PlansTable from './PlansTable';
 import { useState } from 'react';
 import { Card, CardContent, Autocomplete, Typography, Button } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
@@ -49,7 +49,7 @@ const OfferFilter = () => {
     //   });
 
 
-    const category = ['Long term', 'Short term', 'Monthly'];
+    const category = ['Long Term', 'Short Term', 'Monthly'];
     const type = [ 'Prepaid', 'Postpaid', 'Both' ];
     const subCategory = ['Alpha +', 'Anarestan', 'BPFO', 'On-net', 'Off-net'];
     const service =['Data', 'Voice', 'Combo'];
@@ -61,7 +61,8 @@ const OfferFilter = () => {
     const [selectedService, setSelectedService] = useState('');
     const [selectedPayment, setSelectedPayment] = useState('');
 
-    const offerFilters = {}
+    const offerFilters = {};
+    const [filteredPlans, setFilterPlans] = useState([]);
 
     const handleFormSubmit = (e) => {
 
@@ -94,11 +95,19 @@ const OfferFilter = () => {
         }
 
         axios.post("http://localhost:8000/packages", offerFilters)
-            .then(res => console.log(res))
+            .then((res) => {
+                console.log(res);
+                setFilterPlans(res.data)
+                console.log('filteredPlans:', res.data)
+
+            })
             .catch(err => console.log(err))
 
-        console.log(offerFilters)
+
+        
     };
+
+
 
 
     return(
@@ -191,7 +200,7 @@ const OfferFilter = () => {
                     >
                         Submit
                     </Button>
-                    <Table/>
+                    <PlansTable filteredPlans={filteredPlans} />
                 </CardContent>
             </Card>
         </div>
