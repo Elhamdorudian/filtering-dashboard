@@ -5,7 +5,7 @@ let uri ='mongodb+srv://elidrn:69135674@referencetable.tpnhgon.mongodb.net/plans
 
 module.exports = {
 
-    //to establish the connection and connect to database 
+    //-------- establishing the connection and connect to database --------// 
     
     connectToDb: (cb) => {
     
@@ -29,7 +29,7 @@ module.exports = {
     
     },
     
-     //to return that connection so that we can use it
+     //-------- returning the connection ---------//
     
     getDb: () => dbConneciton
     

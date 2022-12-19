@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    max-width: 900px;
+    max-width: 1200px;
 }
 
 .login-form{
@@ -14,4 +14,8 @@
 .login-field{
     margin-bottom: 20px !important;
     width:100% !important;
+}
+
+.hide-error{
+    display:none !important;
 }

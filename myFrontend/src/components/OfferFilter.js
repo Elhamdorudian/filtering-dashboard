@@ -1,41 +1,12 @@
 import axios from 'axios';
 import TextField from '@mui/material/textField';
-import '../styles/OfferFilter.css';
 import '../styles/LoginForm.css';
 import PlansTable from './PlansTable';
 import { useState } from 'react';
 import { Card, CardContent, Autocomplete, Typography, Button } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
-// import Autocomplete from '@mui/material/Autocomplete';
 
 const OfferFilter = () => {
-
-
-
-    // const [username,setUsername] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [userError, setUserError] = useState(false);
-    // const [passError, setPassError] = useState(false);
-
-
-    // const handleSubmit = (e) => {
-
-    //   e.preventDefault();
-    //   setUserError(false)
-    //   setPassError(false)
-        
-    //   if(username === ''){
-    //     setUserError(true)
-    //   }
-
-    //   if(password === ''){
-    //     setPassError(true)
-    //   }
-    //   if(username && password){
-    //     console.log(username,password)
-    //     setUsername('');
-    //     setPassword('');
-    //   }}; 
 
 
     // Axios({
@@ -49,8 +20,9 @@ const OfferFilter = () => {
     //   });
 
 
+    
     const category = ['Long Term', 'Short Term', 'Monthly'];
-    const type = [ 'Prepaid', 'Postpaid', 'Both' ];
+    const type = [ 'Prepaid', 'Postpaid' ];
     const subCategory = ['Alpha +', 'Anarestan', 'BPFO', 'On-net', 'Off-net'];
     const service =['Data', 'Voice', 'Combo'];
     const paymentMethod = ['Bill', 'Balance', 'Cash', 'Gift'];
@@ -96,18 +68,10 @@ const OfferFilter = () => {
 
         axios.post("http://localhost:8000/packages", offerFilters)
             .then((res) => {
-                console.log(res);
                 setFilterPlans(res.data)
-                console.log('filteredPlans:', res.data)
-
             })
             .catch(err => console.log(err))
-
-
-        
     };
-
-
 
 
     return(
@@ -122,87 +86,90 @@ const OfferFilter = () => {
                     >
                         Filter Offers
                     </Typography>
-                    <TextField
-                        onChange={(e) => setOfferID(e.target.value)}
-                        value={offerID}
-                        name="offerID"
-                        className="login-field"
-                        label="OfferID"
-                        variant="outlined"
-                        color="secondary"
-                        fullWidth
-                    />
-                    <Autocomplete
-                        onChange={(e,value) => setSelectedType(value)} 
-                        value={selectedType}
-                        name="type"
-                        className='login-field'
-                        disablePortal
-                        // id="type"
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
-                        options={type}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Type" />}
-                    />
-                    <Autocomplete
-                        onChange={(e,value)=> setSelectedCategory(value)}
-                        value={selectedCategory}
-                        className='login-field'
-                        disablePortal
-                        name="category"
-                        // id="category"
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
-                        options={category}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Category" />}
-                    />
-                    <Autocomplete
-                        onChange={(e,value)=> setSelectedSubcategory(value)}
-                        value={selectedSubcategory}
-                        className='login-field'
-                        disablePortal
-                        // id="sub-category"
-                        name="subcategory"
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
-                        options={subCategory}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Sub categoty" />}
-                    />
-                    <Autocomplete
-                        onChange={(e,value)=> setSelectedService(value)}
-                        value={selectedService}
-                        className='login-field'
-                        disablePortal
-                        // id="service"
-                        name="service"
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
-                        options={service}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Service" />}
-                    />
-                    <Autocomplete
-                        onChange={(e,value)=> setSelectedPayment(value)}
-                        value={selectedPayment}
-                        className='login-field'
-                        disablePortal
-                        // id="payment-method"
-                        name="payment"
-                        isOptionEqualToValue={(option, value) => option.id === value.id}
-                        options={paymentMethod}
-                        sx={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Payment Method" />}
-                    />
-                    <Button 
-                    onClick={handleFormSubmit}
-                    variant='contained' 
-                    type='submit'
-                    className='login-field'
+                    <form
+                        onSubmit={handleFormSubmit}
                     >
-                        Submit
-                    </Button>
+                        <TextField
+                            onChange={(e) => setOfferID(e.target.value)}
+                            value={offerID}
+                            name="offerID"
+                            className="login-field"
+                            label="OfferID"
+                            variant="outlined"
+                            color="secondary"
+                            fullWidth
+                        />
+                        <Autocomplete
+                            onChange={(e,value) => setSelectedType(value)} 
+                            value={selectedType}
+                            name="type"
+                            color="secondary"
+                            className='login-field'
+                            disablePortal
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            options={type}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Type" />}
+                        />
+                        <Autocomplete
+                            onChange={(e,value)=> setSelectedCategory(value)}
+                            value={selectedCategory}
+                            className='login-field'
+                            disablePortal
+                            color="secondary"
+                            name="category"
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            options={category}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Category" />}
+                        />
+                        <Autocomplete
+                            onChange={(e,value)=> setSelectedSubcategory(value)}
+                            value={selectedSubcategory}
+                            className='login-field'
+                            disablePortal
+                            name="subcategory"
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            options={subCategory}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Sub categoty" />}
+                        />
+                        <Autocomplete
+                            onChange={(e,value)=> setSelectedService(value)}
+                            value={selectedService}
+                            className='login-field'
+                            disablePortal
+                            name="service"
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            options={service}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Service" />}
+                        />
+                        <Autocomplete
+                            onChange={(e,value)=> setSelectedPayment(value)}
+                            value={selectedPayment}
+                            className='login-field'
+                            disablePortal
+                            name="payment"
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            options={paymentMethod}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Payment Method" />}
+                        />
+                        <Button 
+ 
+                        variant='contained' 
+                        type='submit'
+                        className='login-field'
+                        >
+                            Submit
+                        </Button>
+                    </form>
                     <PlansTable filteredPlans={filteredPlans} />
                 </CardContent>
             </Card>
         </div>
     )}
+
+
 export default OfferFilter;

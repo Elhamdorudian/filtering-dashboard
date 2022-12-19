@@ -6,7 +6,8 @@ const app = express();
 app.use(express.json());
 
 
-//db connection
+//---------- db connection ----------//
+
 let db
 
 connectToDb((err) => {
@@ -26,12 +27,8 @@ app.use(function(req, res, next) {
   });
 
 
+//---------- getting the filtered documents in plans collection ----------//
 
-
-
-
-
-//to get the filtered documents in plans collection
 app.get('/packages', (req,res) => {
 
 
@@ -49,7 +46,9 @@ app.get('/packages', (req,res) => {
 
     }); 
 
-    //to post the plans filter inputs from client
+
+    //---------- posting the plans filter inputs from client ----------//
+
     app.post('/packages', (req,res) => {
         const pkg = req.body
         console.log(pkg)
@@ -72,7 +71,8 @@ app.get('/packages', (req,res) => {
     })
 
 
-//to check if the user exists in the users collection
+//---------- checking if the user exists in the users collection ----------//
+
     app.get('/users', (req,res) => {
     
         let us = []
@@ -89,13 +89,15 @@ app.get('/packages', (req,res) => {
     
         }); 
 
-//to post the username & password from the login page
+//---------- posting the username & password from the login page ----------//
+
     app.post('/users', (req,res) => {
-        const user = req.body    
+
+        const user = req.body;   
 
         let loginReq = [];
 
-            db.collection('users')
+        db.collection('users')
             .find(user)
             .forEach(userReq => loginReq.push(userReq))
             .then(() => {
@@ -105,6 +107,6 @@ app.get('/packages', (req,res) => {
             })
             .catch(()  => {
                 res.status(500).json({error: 'Could not fetch the documents '})
-            })  
+        })  
         
     })

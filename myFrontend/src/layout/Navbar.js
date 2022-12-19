@@ -9,6 +9,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { indigo } from '@mui/material/colors';
 import MCILogo from "../assets/images/MCI-logo.png";
+import { Typography } from '@mui/material';
 
 const css = `
   .MCI-logo {
@@ -28,11 +29,11 @@ const theme = createTheme({
   
 
 
-export default function ButtonAppBar() {
+export default function Navbar({users}) {
 
   const handleLogin = () => {
 
-    console.log('try to login');
+    console.log('try to login');  
 
   };
 
@@ -71,8 +72,11 @@ export default function ButtonAppBar() {
           color="inherit"
      
           >
+            <Typography>
+            {users.name}
+            </Typography>
             <LoginIcon className="aa" />
-            Login
+
             </IconButton>
         </Toolbar>
       </AppBar>
