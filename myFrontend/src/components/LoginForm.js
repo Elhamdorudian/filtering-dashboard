@@ -1,42 +1,25 @@
 import TextField from '@mui/material/textField';
 import axios from 'axios';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import { blue, orange } from '@mui/material/colors';
-import '../styles/LoginForm.css'
+import '../styles/FormStyles.css'
 import { useState } from 'react';
 import { Card, CardContent, Button, Alert, AlertTitle } from '@mui/material';
-
-
-// const theme = createTheme({
-//     palette : {
-//         secondary: {
-//             main: blue[700]
-//         },
-//     },
-// })
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { cyan, orange } from '@mui/material/colors';
 
 
 
-    // const handleSubmit = (e) => {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: orange[200]},
+    secondary: {
+      main: cyan[600],
+    },
+  },
+})
 
-    //   e.preventDefault();
-    //   setUserError(false)
-    //   setPassError(false)
-        
-    //   if(username === ''){
-    //     setUserError(true)
-    //   }
 
-    //   if(password === ''){
-    //     setPassError(true)
-    //   }
-    //   if(username && password){
-    //     console.log(username,password)
-    //     setUsername('');
-    //     setPassword('');
-    //   }}; 
-
-const LoginForm = ({users, setUsers}) => {
+const LoginForm = ({handleValidUser}) => {
 
 
     const [username,setUsername] = useState('');
@@ -45,12 +28,13 @@ const LoginForm = ({users, setUsers}) => {
     const [passError, setPassError] = useState(false);
     const [validUser, setValidUser] = useState(true);
 
+    const [users, setUsers] = useState({});
 
     const handleSubmit = (e) => {
 
+      let validUser;
+
       e.preventDefault();
-      // setUserError(false)
-      // setPassError(false)
         
       if(username === ''){
         setUserError(true)
@@ -59,35 +43,36 @@ const LoginForm = ({users, setUsers}) => {
       if(password === ''){
         setPassError(true)
       }
+
       if(username && password){
-        // console.log(username,password);
-        setUsers.username = username;
-        setUsers.password = password;
+
+        setUsers({username,password});
         setUserError(false);
         setPassError(false);
 
         axios.post("http://localhost:8000/users", users)
         .then((res) => {
 
-            console.log(users);
-            if(res.data.length !== 0){
-                setValidUser(true);
-            }else{
-              setValidUser(false);
-            }
+
+          validUser = res.data[0];
+          handleValidUser(validUser);
+
+          res.data.length !== 0 ?
+            setValidUser(true) :
+            setValidUser(false)
 
         })
         .catch(err => console.log(err))
 
-        setUsername('');
-        setPassword('');
+          setUsername('');
+          setPassword('');
       }}; 
 
     return(
-
-                <div className="login-wrapper">
+              <ThemeProvider theme={theme}>
+                <div className="form-wrapper">
                     <Card>
-                        <CardContent>
+                        <CardContent className='form-card'>
                           <form 
                             noValidate 
                             autoComplete='off'
@@ -97,7 +82,7 @@ const LoginForm = ({users, setUsers}) => {
                           <TextField
                               onChange={(e) => setUsername(e.target.value)}
                               value={username}
-                              className="login-field"
+                              className="form-fields"
                               label="Username"
                               variant="outlined"
                               color="secondary"
@@ -110,7 +95,7 @@ const LoginForm = ({users, setUsers}) => {
                               value={password}
                               label="Password"
                               type="password"
-                              className="login-field"
+                              className="form-fields"
                               variant="outlined"
                               color="secondary"
                               placeholder='password'
@@ -121,7 +106,7 @@ const LoginForm = ({users, setUsers}) => {
                           <Button
                           variant='contained'
                           fullWidth
-                          color='secondary'
+                          color='primary'
                           type='submit'
                           >
                               Login
@@ -134,9 +119,8 @@ const LoginForm = ({users, setUsers}) => {
                 </CardContent>
                 </Card>
                 </div>
-
+              </ThemeProvider>
     )
-
 }
 
 export default LoginForm;

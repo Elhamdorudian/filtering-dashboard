@@ -1,0 +1,49 @@
+/*--------------------------Forms--------------------------*/
+
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.form-fields{
+    margin-bottom: 20px !important;
+    width:100% !important;
+}
+
+.form-card{
+    background-color: #f8f5ef;
+}
+/*--------------------------Login--------------------------*/
+
+.login-form{
+    padding: 3rem;
+}
+
+.hide-error{
+    display:none !important;
+}   
+
+/*--------------------------Filter--------------------------*/
+
+.offer-form{
+    text-align: center;
+    /* padding:3% 6%; */
+}
+
+.filter-header{
+    padding:1.5rem;
+}
+
+.filter-submit{
+    width: 100%;
+    margin-bottom: 20px !important;
+    margin:auto;
+}
+
+
+
+

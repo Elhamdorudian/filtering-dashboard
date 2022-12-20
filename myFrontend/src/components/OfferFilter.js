@@ -1,24 +1,41 @@
 import axios from 'axios';
-import TextField from '@mui/material/textField';
-import '../styles/LoginForm.css';
-import PlansTable from './PlansTable';
 import { useState } from 'react';
+import { styled } from "@mui/material/styles";
+import TextField from '@mui/material/textField';
+import PlansTable from './PlansTable';
 import { Card, CardContent, Autocomplete, Typography, Button } from '@mui/material';
-import { blueGrey } from '@mui/material/colors';
+import { cyan, orange } from '@mui/material/colors';
+import '../styles/FormStyles.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
+
+
+const theme = createTheme({
+        palette: {
+          primary: {
+            main: orange[200]},
+          secondary: {
+            main: cyan[600],
+          },
+        },
+      })
+
+
+const StyledAutocomplete = styled(Autocomplete)({
+    "&.Mui-focused .MuiInputLabel-outlined": {
+      color: "#00acc1"
+      
+    },
+    "& .MuiAutocomplete-inputRoot": {
+      color: "#222",
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#00acc1"
+      }
+    }
+  });
 
 const OfferFilter = () => {
-
-
-    // Axios({
-    //     method: "GET",
-    //     url: "http://localhost:5000/",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     }
-    //   }).then(res => {
-    //     console.log(res.data.message);
-    //   });
-
 
     
     const category = ['Long Term', 'Short Term', 'Monthly'];
@@ -75,46 +92,50 @@ const OfferFilter = () => {
 
 
     return(
-        <div className="login-wrapper">
-            <Card sx={{width: '85%'}} >
-                <CardContent >
+        <ThemeProvider theme={theme}>
+
+        <div className="form-wrapper">
+            <Card sx={{width: '85%'}} > 
+                <CardContent className="form-card"  >
                     <Typography
-                        variant='h6'
+                        variant='h5'
                         component='h2'
-                        color={blueGrey[500]}
+                        color="gray"
+                        className="filter-header"
                         gutterBottom
                     >
                         Filter Offers
                     </Typography>
                     <form
                         onSubmit={handleFormSubmit}
+                        className="offer-form"
                     >
                         <TextField
                             onChange={(e) => setOfferID(e.target.value)}
                             value={offerID}
                             name="offerID"
-                            className="login-field"
+                            className="form-fields"
                             label="OfferID"
                             variant="outlined"
                             color="secondary"
                             fullWidth
                         />
-                        <Autocomplete
+                        <StyledAutocomplete
                             onChange={(e,value) => setSelectedType(value)} 
                             value={selectedType}
                             name="type"
-                            color="secondary"
-                            className='login-field'
+                            // color="primary"
+                            className='form-fields'
                             disablePortal
                             isOptionEqualToValue={(option, value) => option.id === value.id}
                             options={type}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Type" />}
                         />
-                        <Autocomplete
+                        <StyledAutocomplete
                             onChange={(e,value)=> setSelectedCategory(value)}
                             value={selectedCategory}
-                            className='login-field'
+                            className='form-fields'
                             disablePortal
                             color="secondary"
                             name="category"
@@ -123,10 +144,10 @@ const OfferFilter = () => {
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Category" />}
                         />
-                        <Autocomplete
+                        <StyledAutocomplete
                             onChange={(e,value)=> setSelectedSubcategory(value)}
                             value={selectedSubcategory}
-                            className='login-field'
+                            className='form-fields'
                             disablePortal
                             name="subcategory"
                             isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -134,10 +155,10 @@ const OfferFilter = () => {
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Sub categoty" />}
                         />
-                        <Autocomplete
+                        <StyledAutocomplete
                             onChange={(e,value)=> setSelectedService(value)}
                             value={selectedService}
-                            className='login-field'
+                            className='form-fields'
                             disablePortal
                             name="service"
                             isOptionEqualToValue={(option, value) => option.id === value.id}
@@ -145,22 +166,21 @@ const OfferFilter = () => {
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Service" />}
                         />
-                        <Autocomplete
+                        <StyledAutocomplete
                             onChange={(e,value)=> setSelectedPayment(value)}
                             value={selectedPayment}
-                            className='login-field'
+                            className='form-fields'
                             disablePortal
                             name="payment"
-                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            isOptionEqualToValue={(option, value) => option.id === value.id }
                             options={paymentMethod}
                             sx={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Payment Method" />}
                         />
                         <Button 
- 
                         variant='contained' 
                         type='submit'
-                        className='login-field'
+                        className='filter-submit'
                         >
                             Submit
                         </Button>
@@ -169,6 +189,7 @@ const OfferFilter = () => {
                 </CardContent>
             </Card>
         </div>
+        </ThemeProvider>
     )}
 
 

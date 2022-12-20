@@ -5,19 +5,23 @@ import LoginForm from './components/LoginForm';
 import Layout from './layout/Layout';
 import OfferFilter from './components/OfferFilter';
 import { useState } from 'react';
+import ComboBox from './components/ComboBox';
 
 
 function App() {
 
-  const[users,setUsers] = useState({})
+const [validUser,setValidUser] = useState("");
 
+  const handleValidUser = (user) => {
+    setValidUser(user);
+  }
   
   return (
     <Router>
-      <Navbar users={users}/>      
+      <Navbar validUser={validUser} /> 
     <Layout>
         <Routes>
-          <Route exact path="/login" element={<LoginForm users={users} setUsers={setUsers} />} />
+          <Route exact path="/login" element={<LoginForm handleValidUser={handleValidUser} />} />
           <Route exact path="/offers" element={<OfferFilter/>} />
         </Routes>
       </Layout>

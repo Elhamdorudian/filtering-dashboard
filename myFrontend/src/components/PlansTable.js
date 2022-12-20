@@ -5,12 +5,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import '../styles/FormStyles.css'
+import { red } from '@mui/material/colors';
 
 
 const PlansTable = ({filteredPlans}) => {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper} >
+      <Table sx={{ minWidth: 650, }} className="offer-form" aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Plan</TableCell>
