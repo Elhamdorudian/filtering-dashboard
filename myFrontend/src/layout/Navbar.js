@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { indigo } from '@mui/material/colors';
 import MCILogo from "../assets/images/MCI-logo.png";
 import { Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,9 @@ const css = `
   const theme = createTheme({
     palette: {
       primary: {
-        main: orange[200]},
+        main: orange[200],
+        dark: orange[800]
+      },
       secondary: {
         main: cyan[400],
       },
@@ -41,13 +42,8 @@ export default function Navbar({validUser}) {
     if (validUser) {
       navigate("/offers");
     }
-  }, [validUser]);
+  }, [validUser,navigate]);
 
-  const handleLogin = () => {
-
-    console.log('try to login');  
-
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,10 +60,14 @@ export default function Navbar({validUser}) {
           </div>
           {validUser &&
             <>
-              <Typography>
+              <Typography
+                color="primary"
+              >
                 Welcome {validUser.name}
               </Typography>
-              <AccountCircle />
+              <AccountCircle 
+                color="primary"
+              />
             </>
           }
 

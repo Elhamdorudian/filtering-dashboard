@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 import Layout from './layout/Layout';
 import OfferFilter from './components/OfferFilter';
 import { useState } from 'react';
-import ComboBox from './components/ComboBox';
+import Test from './components/Test';
 
 
 function App() {
@@ -23,6 +23,7 @@ const [validUser,setValidUser] = useState("");
         <Routes>
           <Route exact path="/login" element={<LoginForm handleValidUser={handleValidUser} />} />
           <Route exact path="/offers" element={<OfferFilter/>} />
+          <Route exact path="/test" element={<Test/>} />
         </Routes>
       </Layout>
     </Router>

@@ -95,7 +95,7 @@ const OfferFilter = () => {
         <ThemeProvider theme={theme}>
 
         <div className="form-wrapper">
-            <Card sx={{width: '85%'}} > 
+            <Card sx={{width: '88%'}} > 
                 <CardContent className="form-card"  >
                     <Typography
                         variant='h5'
