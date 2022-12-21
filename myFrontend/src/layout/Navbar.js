@@ -34,15 +34,14 @@ const css = `
   
 
 
-export default function Navbar({validUser}) {
+export default function Navbar({users}) {
 
   const navigate = useNavigate();
-
   useEffect(() => {
-    if (validUser) {
+    if (users) {
       navigate("/offers");
     }
-  }, [validUser,navigate]);
+  }, [users,navigate]);
 
 
   return (
@@ -58,12 +57,12 @@ export default function Navbar({validUser}) {
           <div className="MCI-logo">
           <img src={MCILogo} alt="logo" width="50" height="50" />
           </div>
-          {validUser &&
+          {users &&
             <>
               <Typography
                 color="primary"
               >
-                Welcome {validUser.name}
+                Welcome {users.name}
               </Typography>
               <AccountCircle 
                 color="primary"

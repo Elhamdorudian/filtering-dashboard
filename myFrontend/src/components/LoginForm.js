@@ -1,7 +1,7 @@
 import TextField from '@mui/material/textField';
 import axios from 'axios';
 import '../styles/FormStyles.css'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, Button, Alert, AlertTitle } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { cyan, orange } from '@mui/material/colors';
@@ -28,48 +28,81 @@ const LoginForm = ({handleValidUser}) => {
     const [passError, setPassError] = useState(false);
     const [validUser, setValidUser] = useState(true);
 
-    const [users, setUsers] = useState({});
+    let users = {};
+    const usersRef = useRef();
+    usersRef.current = users;
+    const [submitted, setSubmitted] = useState(false);
+
+    // const getUser = {
+    //   username,
+    //   password
+    // };
+
+    // const getUser = useMemo(() => {
+    //   return {
+    //     username,
+    //     password
+    //   };
+    // }, [username,password]); 
 
     const handleSubmit = (e) => {
-
-      let validUser;
-
       e.preventDefault();
-        
+
+      console.log(submitted)
+
       if(username === ''){
         setUserError(true)
       }
-
+    
       if(password === ''){
         setPassError(true)
       }
 
-      if(username && password){
+      if (username && password) {
 
-        setUsers({username,password});
+
         setUserError(false);
         setPassError(false);
+        setSubmitted(true);
 
-        axios.post("http://localhost:8000/users", users)
-        .then((res) => {
+      }
+      
+    };
 
 
-          validUser = res.data[0];
-          handleValidUser(validUser);
 
-          res.data.length !== 0 ?
-            setValidUser(true) :
-            setValidUser(false)
+    useEffect(() => {
+      console.log("in the useEffect")
+      if (submitted) {
+        const getUser = {
+          username,
+          password
+        }
 
-        })
-        .catch(err => console.log(err))
 
-          setUsername('');
-          setPassword('');
-      }}; 
+          axios.post("http://localhost:8000/users", getUser)
+            .then((res) => {
+              console.log(res.data[0]);
+        
+              if (res.data.length !== 0) {
+                setValidUser(true);
+
+                handleValidUser(res.data[0]);
+              } else {
+                setValidUser(false);
+              }
+              setSubmitted(false);
+            })
+            .catch(err => console.log(err))
+        
+      }
+    }, [submitted, handleValidUser,username,password]);
+
+
 
     return(
               <ThemeProvider theme={theme}>
+                {console.log(usersRef.current)}
                 <div className="form-wrapper">
                     <Card>
                         <CardContent className='form-card'>
@@ -77,7 +110,7 @@ const LoginForm = ({handleValidUser}) => {
                             noValidate 
                             autoComplete='off'
                             className='login-form' 
-                            onSubmit={handleSubmit}
+                            onSubmit = {handleSubmit}
                           >
                           <TextField
                               onChange={(e) => setUsername(e.target.value)}

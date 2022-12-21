@@ -1,7 +1,8 @@
 [
     {
         "offerID":"800110",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"150",
         "optin": "No",
@@ -17,7 +18,8 @@
     },
     {
         "offerID":"800130",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"500",
         "optin": "yes",
@@ -33,7 +35,8 @@
     },
     {
         "offerID":"800140",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"200",
         "optin": "yes",
@@ -49,7 +52,8 @@
     },
     {
         "offerID":"800150",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "Long Term",
         "duration": "60",
         "qouta":"600",
         "optin": "yes",
@@ -65,7 +69,8 @@
     },
     {
         "offerID":"800160",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"850",
         "optin": "yes",
@@ -81,7 +86,8 @@
     },
     {
         "offerID":"800170",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"250",
         "optin": "yes",
@@ -97,7 +103,8 @@
     },
     {
         "offerID":"800180",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "Long Term",
         "duration": "60",
         "qouta":"550",
         "optin": "yes",
@@ -113,7 +120,8 @@
     },
     {
         "offerID":"800190",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "Long Term",
         "duration": "180",
         "qouta":"100",
         "optin": "yes",
@@ -129,7 +137,8 @@
     },
     {
         "offerID":"800200",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "Long Term",
         "duration": "180",
         "qouta":"300",
         "optin": "yes",
@@ -145,7 +154,8 @@
     },
     {
         "offerID":"800210",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"120",
         "optin": "yes",
@@ -161,7 +171,8 @@
     },
     {
         "offerID":"800220",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "Long Term",
         "duration": "360",
         "qouta":"150",
         "optin": "yes",
@@ -177,7 +188,8 @@
     },
     {
         "offerID":"800230",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "Long Term",
         "duration": "360",
         "qouta":"550",
         "optin": "no",
@@ -193,7 +205,8 @@
     },
     {
         "offerID":"800240",
-        "category":"On-net",
+        "subcategory":"On-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"350",
         "optin": "yes",
@@ -209,7 +222,8 @@
     },
     {
         "offerID":"800250",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "monthly",
         "duration": "30",
         "qouta":"400",
         "optin": "yes",
@@ -225,7 +239,8 @@
     },
     {
         "offerID":"800260",
-        "category":"Off-net",
+        "subcategory":"Off-net",
+        "category": "Long Term",
         "duration": "60",
         "qouta":"700",
         "optin": "yes",
@@ -238,7 +253,7 @@
           "english": "700min 60days",
           "persian": "بسته ۷۰۰ دقیقه ۶۰ روزه"   
       }
-    },
+    }
 ]
 
 

@@ -82,6 +82,14 @@ const OfferFilter = () => {
             offerFilters.payment = selectedPayment;
             setSelectedPayment("")
         }
+          
+            // useEffect(() => {
+            //     axios.post("http://localhost:8000/packages", offerFilters)
+            //     .then((res) => {
+            //         setFilterPlans(res.data)
+            //     })
+            //     .catch(err => console.log(err))
+            // }, []);
 
         axios.post("http://localhost:8000/packages", offerFilters)
             .then((res) => {
