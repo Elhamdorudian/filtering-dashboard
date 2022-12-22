@@ -2,15 +2,13 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MCILogo from "../assets/images/MCI-logo.png";
 import { Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import { cyan, orange } from '@mui/material/colors';
-
-
-
+import { ThemeProvider } from '@mui/material';
+import myTheme from '../components/myTheme';
+import '../styles/Navbar.css'
 
 const css = `
   .MCI-logo {
@@ -18,20 +16,6 @@ const css = `
   }
   `;
 
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: orange[200],
-        dark: orange[800]
-      },
-      secondary: {
-        main: cyan[400],
-      },
-    },
-  })
-
-  
 
 
 export default function Navbar({users}) {
@@ -45,7 +29,7 @@ export default function Navbar({users}) {
 
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={myTheme}>
      <style type="text/css">{css}</style>
       <Box sx={{ flexGrow: 1 }}>
       <AppBar 
@@ -60,11 +44,13 @@ export default function Navbar({users}) {
           {users &&
             <>
               <Typography
-                color="primary"
+                className='logged-in-user'
+                color="info"
               >
                 Welcome {users.name}
               </Typography>
               <AccountCircle 
+                className='user-icon'
                 color="primary"
               />
             </>

@@ -1,12 +1,8 @@
 
 .wrapper{
     margin:auto;
-    /* background-color: rgb(249, 246, 246); */
-        background-color: #f4ede0;
-
+    background-color: inherit;
     height:100% !important;
-    /* height:100vh; */
     padding:6%;
-    /* margin-top:10%; */
 }
 

@@ -3,24 +3,11 @@ import axios from 'axios';
 import '../styles/FormStyles.css'
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, Button, Alert, AlertTitle } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { cyan, orange } from '@mui/material/colors';
-
-
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: orange[200]},
-    secondary: {
-      main: cyan[600],
-    },
-  },
-})
+import { ThemeProvider } from '@mui/material';
+import myTheme from './myTheme';
 
 
 const LoginForm = ({handleValidUser}) => {
-
 
     const [username,setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -33,22 +20,10 @@ const LoginForm = ({handleValidUser}) => {
     usersRef.current = users;
     const [submitted, setSubmitted] = useState(false);
 
-    // const getUser = {
-    //   username,
-    //   password
-    // };
-
-    // const getUser = useMemo(() => {
-    //   return {
-    //     username,
-    //     password
-    //   };
-    // }, [username,password]); 
 
     const handleSubmit = (e) => {
       e.preventDefault();
-
-      console.log(submitted)
+      setValidUser(true)
 
       if(username === ''){
         setUserError(true)
@@ -72,18 +47,14 @@ const LoginForm = ({handleValidUser}) => {
 
 
     useEffect(() => {
-      console.log("in the useEffect")
       if (submitted) {
         const getUser = {
           username,
           password
         }
-
-
           axios.post("http://localhost:8000/users", getUser)
             .then((res) => {
-              console.log(res.data[0]);
-        
+      
               if (res.data.length !== 0) {
                 setValidUser(true);
 
@@ -101,8 +72,7 @@ const LoginForm = ({handleValidUser}) => {
 
 
     return(
-              <ThemeProvider theme={theme}>
-                {console.log(usersRef.current)}
+              <ThemeProvider theme={myTheme}>
                 <div className="form-wrapper">
                     <Card>
                         <CardContent className='form-card'>
@@ -118,7 +88,7 @@ const LoginForm = ({handleValidUser}) => {
                               className="form-fields"
                               label="Username"
                               variant="outlined"
-                              color="secondary"
+                              color="primary"
                               fullWidth
                               error={userError}
                               required
@@ -130,7 +100,7 @@ const LoginForm = ({handleValidUser}) => {
                               type="password"
                               className="form-fields"
                               variant="outlined"
-                              color="secondary"
+                              color="primary"
                               placeholder='password'
                               fullWidth
                               error={passError}
@@ -144,7 +114,7 @@ const LoginForm = ({handleValidUser}) => {
                           >
                               Login
                           </Button>
-                          <Alert severity="error" className={!validUser ? null : "hide-error"}>
+                          <Alert severity="warning" className={`alert ${!validUser ? null : "hide-error"}`}>
                             <AlertTitle >Error</AlertTitle>
                             <strong>username or password is incorrect!</strong>
                           </Alert>

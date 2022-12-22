@@ -15,7 +15,7 @@
 }
 
 .form-card{
-    background-color: #f8f5ef;
+    background-color: #fbf6ec;
 }
 /*--------------------------Login--------------------------*/
 
@@ -24,8 +24,12 @@
 }
 
 .hide-error{
-    display:none !important;
+    visibility:hidden !important;
 }   
+
+.alert{
+    margin-top: 1.5rem;
+}
 
 /*--------------------------Filter--------------------------*/
 
@@ -46,6 +50,10 @@
 
 /*--------------------------PlansTable--------------------------*/
 
+.table-paper{
+    background-color: #d6e2de !important;
+}
+
 .export-box{
     display: flex;
     flex-direction: row;
@@ -63,13 +71,15 @@
     font-size: 0.8rem;
 }
 
-.export-link:active{
-    color:black;
+.export-link:any-link{
+    color:#504538;
 }
 
-.export-link:focus{
-    color:#222;
+.export-link:link{
+    color:#504538 !important;
 }
+
+
 
 
 

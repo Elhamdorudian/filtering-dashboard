@@ -4,33 +4,20 @@ import { styled } from "@mui/material/styles";
 import TextField from '@mui/material/textField';
 import PlansTable from './PlansTable';
 import { Card, CardContent, Autocomplete, Typography, Button } from '@mui/material';
-import { cyan, orange } from '@mui/material/colors';
 import '../styles/FormStyles.css';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-
-
-const theme = createTheme({
-        palette: {
-          primary: {
-            main: orange[200]},
-          secondary: {
-            main: cyan[600],
-          },
-        },
-      })
+import { ThemeProvider } from '@mui/material';
+import myTheme from './myTheme';
 
 
 const StyledAutocomplete = styled(Autocomplete)({
     "&.Mui-focused .MuiInputLabel-outlined": {
-      color: "#00acc1"
+      color: "primary"
       
     },
     "& .MuiAutocomplete-inputRoot": {
-      color: "#222",
+      color: "primary",
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#00acc1"
+        borderColor: "primary"
       }
     }
   });
@@ -82,14 +69,6 @@ const OfferFilter = () => {
             offerFilters.payment = selectedPayment;
             setSelectedPayment("")
         }
-          
-            // useEffect(() => {
-            //     axios.post("http://localhost:8000/packages", offerFilters)
-            //     .then((res) => {
-            //         setFilterPlans(res.data)
-            //     })
-            //     .catch(err => console.log(err))
-            // }, []);
 
         axios.post("http://localhost:8000/packages", offerFilters)
             .then((res) => {
@@ -100,7 +79,7 @@ const OfferFilter = () => {
 
 
     return(
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={myTheme}>
 
         <div className="form-wrapper">
             <Card sx={{width: '88%'}} > 
@@ -125,14 +104,13 @@ const OfferFilter = () => {
                             className="form-fields"
                             label="OfferID"
                             variant="outlined"
-                            color="secondary"
+                            color="primary"
                             fullWidth
                         />
                         <StyledAutocomplete
                             onChange={(e,value) => setSelectedType(value)} 
                             value={selectedType}
                             name="type"
-                            // color="primary"
                             className='form-fields'
                             disablePortal
                             isOptionEqualToValue={(option, value) => option.id === value.id}
