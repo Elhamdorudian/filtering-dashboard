@@ -44,6 +44,34 @@
     margin:auto;
 }
 
+/*--------------------------PlansTable--------------------------*/
+
+.export-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.export-btn{
+    justify-self: flex-end;
+
+}
+
+.export-link{
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.export-link:active{
+    color:black;
+}
+
+.export-link:focus{
+    color:#222;
+}
+
+
 
 
 
