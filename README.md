@@ -1,6 +1,5 @@
 # Plans Dashboard
-oooo
-> A dashboard to get the sample plans (Data,Voice,Combo) and filter them based on several criterias like OfferID,Service,Type of customers,Duration,...
+A dashboard to get the sample plans (Data,Voice,Combo) and filter them based on several criterias like OfferID,Service,Type of customers,Duration,...
 
 
 # Features
