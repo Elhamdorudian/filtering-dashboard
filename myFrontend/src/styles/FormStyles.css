@@ -15,7 +15,9 @@
 }
 
 .form-card{
-    background-color: #fbf6ec;
+    /* background-color: #fbf6ec; */
+        background-color: #f1f0ec !important;
+
 }
 /*--------------------------Login--------------------------*/
 
@@ -54,11 +56,15 @@
     background-color: #d6e2de !important;
 }
 
+.table-rows{
+    background-color: #e7eae7 !important;
+}
+
 .export-box{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    padding: 1rem;
+    padding-bottom: 1.3rem;
 }
 
 .export-btn{
@@ -78,6 +84,7 @@
 .export-link:link{
     color:#504538 !important;
 }
+
 
 
 

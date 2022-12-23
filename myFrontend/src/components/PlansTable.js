@@ -16,8 +16,6 @@ import myTheme from './myTheme';
 
 const PlansTable = ({filteredPlans}) => {
 
-
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -30,12 +28,25 @@ const PlansTable = ({filteredPlans}) => {
     setPage(0);
   };
 
+//--------------- flattening the fliteredPlans ---------------//
 
+  const csvData = filteredPlans.map(item => {
+    const newItem = {};
+    Object.entries(item).forEach(([key, value]) => {
+      if (typeof value === 'object') {
+        Object.entries(value).forEach(([nestedKey, nestedValue]) => {
+          newItem[`${nestedKey} ${key}`] = nestedValue;
+        });
+      } else {
+        newItem[key] = value;
+      }
+    });
+    return newItem;
+  });
 
   return (
     <ThemeProvider theme={myTheme}>
-      <Paper className="table-paper">
-        <Box className="export-box">
+              <Box className="export-box">
         <Button
           color="secondary"
           startIcon={<FileDownloadIcon />}
@@ -43,7 +54,7 @@ const PlansTable = ({filteredPlans}) => {
           className="export-btn"
         >
         <CSVLink
-          data={filteredPlans}
+          data={csvData}
           filename={"filtered-plans.csv"}
           className="export-link"
           target="_blank"
@@ -52,21 +63,23 @@ const PlansTable = ({filteredPlans}) => {
         </CSVLink>
             </Button>
             </Box>
+      <Paper className="table-paper">
         <TableContainer component={Paper}  >
           <Table sx={{ minWidth: 650, }} className="offer-form" aria-label="simple table">
             <TableHead className='table-paper'>
-              <TableRow>
+              <TableRow >
                 <TableCell>Plan</TableCell>
-                <TableCell align="right">Service</TableCell>
-                <TableCell align="right">OfferID</TableCell>
-                <TableCell align="right">Duration&nbsp;(D)</TableCell>
-                <TableCell align="right">Price&nbsp;(T)</TableCell>
-                <TableCell align="right">Type</TableCell>
-                <TableCell align="right">Category&nbsp;</TableCell>
-                <TableCell align="right">SubCategory</TableCell>
-                <TableCell align="right">Payment Method</TableCell>
-                <TableCell align="right">Opt-in</TableCell>
-                <TableCell align="right">Date</TableCell>
+                <TableCell>Persian Name</TableCell>
+                <TableCell align="left">Service</TableCell>
+                <TableCell align="left">OfferID</TableCell>
+                <TableCell align="left">Duration&nbsp;(D)</TableCell>
+                <TableCell align="left">Price&nbsp;(T)</TableCell>
+                <TableCell align="left">Type</TableCell>
+                <TableCell align="left">Category&nbsp;</TableCell>
+                <TableCell align="left">SubCategory</TableCell>
+                <TableCell align="left">Payment Method</TableCell>
+                <TableCell align="left">Opt-in</TableCell>
+                <TableCell align="left">Date</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -74,22 +87,24 @@ const PlansTable = ({filteredPlans}) => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((pkg) => (
                 <TableRow
+                  className="table-rows"
                   key={pkg._id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
                     {pkg.name.english}
                   </TableCell>
-                  <TableCell align="right">{pkg.service}</TableCell>
-                  <TableCell align="right">{pkg.offerID}</TableCell>
-                  <TableCell align="right">{pkg.duration}</TableCell>
-                  <TableCell align="right">{pkg.price}</TableCell>
-                  <TableCell align="right">{pkg.type}</TableCell>
-                  <TableCell align="right">{pkg.category}</TableCell>
-                  <TableCell align="right">{pkg.subcategory}</TableCell>
-                  <TableCell align="right">{pkg.payment}</TableCell>
-                  <TableCell align="right">{pkg.optin}</TableCell>
-                  <TableCell align="right">{pkg.date}</TableCell>
+                  <TableCell align="left">{pkg.name.persian}</TableCell>
+                  <TableCell align="left">{pkg.service}</TableCell>
+                  <TableCell align="left">{pkg.offerID}</TableCell>
+                  <TableCell align="left">{pkg.duration}</TableCell>
+                  <TableCell align="left">{pkg.price}</TableCell>
+                  <TableCell align="left">{pkg.type}</TableCell>
+                  <TableCell align="left">{pkg.category}</TableCell>
+                  <TableCell align="left">{pkg.subcategory}</TableCell>
+                  <TableCell align="left">{pkg.payment}</TableCell>
+                  <TableCell align="left">{pkg.optin}</TableCell>
+                  <TableCell align="left">{pkg.date}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -80,7 +80,6 @@ const OfferFilter = () => {
 
     return(
         <ThemeProvider theme={myTheme}>
-
         <div className="form-wrapper">
             <Card sx={{width: '88%'}} > 
                 <CardContent className="form-card"  >

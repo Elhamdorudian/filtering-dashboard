@@ -50,8 +50,8 @@ app.get('/packages', (req,res) => {
     //---------- posting the plans filter inputs from client ----------//
 
     app.post('/packages', (req,res) => {
+        console.log("data posted from client")
         const pkg = req.body
-        console.log(pkg)
     
 
         let packagePlans = [];
@@ -61,7 +61,7 @@ app.get('/packages', (req,res) => {
             .forEach(packagePlan => packagePlans.push(packagePlan))
             .then(() => {
                 res.status(200).json(packagePlans)
-                console.log(packagePlans)
+                console.log("data recieved from db")
                 
                 
             })
@@ -102,7 +102,7 @@ app.get('/packages', (req,res) => {
             .forEach(userReq => loginReq.push(userReq))
             .then(() => {
                 res.status(200).json(loginReq)
-                console.log(loginReq)
+                console.log("user login request")
                 
             })
             .catch(()  => {
