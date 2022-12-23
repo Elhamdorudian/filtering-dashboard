@@ -1,8 +1,9 @@
 # Plans Dashboard
 A dashboard to get the sample plans (Data,Voice,Combo) and filter them based on several criterias like OfferID,Service,Type of customers,Duration,...
 
-![Filters](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filters.png | width=600 height=600)
-![Filtered Plans](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filteredPlans.png | width=600 height=600)
+
+![Filters](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filters.png)
+![Filtered Plans](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filteredPlans.png)
 
 
 # Features
