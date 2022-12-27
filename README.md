@@ -36,7 +36,7 @@ To get started with this project, follow these steps:
 > `3` you need to change the *uri* variable in db.js base on your mongobd username and password
 
 
-* Open your browser and visit http://localhost:3000 to view the app.
+* Open your browser and visit http://localhost:3000/login to view the app.
 Note: Make sure you have Node.js installed on your machine. You may also need to create a MongoDB database and user.
 
 # Built With
