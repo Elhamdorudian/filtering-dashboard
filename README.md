@@ -1,5 +1,5 @@
-# Plans Dashboard
-A dashboard to get the sample plans (Data,Voice,Combo) and filter them based on several criterias like OfferID,Service,Type of customers,Duration,...
+# Data Management Dashboard
+This is a data management dashboard project that allows users to filter and export data plans from MongoDB based on different criteria such as type, category, and offer ID. Users must log in to access the dashboard.
 
 
 # Features
