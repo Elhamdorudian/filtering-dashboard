@@ -41,6 +41,6 @@ Note: Make sure you have Node.js installed on your machine. You may also need to
 * Node.js
 * MongoDB
 
-## Demo
+# Demo
 ![Filters](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filters.png)
 ![Filtered Plans](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filteredPlans.png)
