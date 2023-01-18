@@ -2,10 +2,6 @@
 A dashboard to get the sample plans (Data,Voice,Combo) and filter them based on several criterias like OfferID,Service,Type of customers,Duration,...
 
 
-![Filters](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filters.png)
-![Filtered Plans](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filteredPlans.png)
-
-
 # Features
 * Filter plans by offerID, Service, Type, Duration, and other criteria
 * View detailed information about selected plans
@@ -44,3 +40,7 @@ Note: Make sure you have Node.js installed on your machine. You may also need to
 * MUI
 * Node.js
 * MongoDB
+
+## Demo
+![Filters](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filters.png)
+![Filtered Plans](https://github.com/Elhamdorudian/dashboard-plans/blob/master/myFrontend/src/assets/images/filteredPlans.png)
